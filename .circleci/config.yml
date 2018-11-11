@@ -22,7 +22,34 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # run tests!
       - run: yarn lint
       - run: yarn test
-      - run: yarn e2e
+
+    docker:
+      - image: cypress/base:8
+        environment:
+          ## this enables colors in the output
+          TERM: xterm
+    working_directory: ~/app
+    parallelism: 1
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v2-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - v2-deps-{{ .Branch }}-
+            - v2-deps-
+      - run:
+          name: Running E2E tests
+          command: yarn e2e
+      - save_cache:
+          key: v2-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.yarn
+            - ~/.cache
+      - store_test_results:
+          path: e2e-results
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
