@@ -2,7 +2,131 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "",
-  "projects": {},
+  "projects": {
+    "public-web-client": {
+      "root": "apps/public/web-client/",
+      "sourceRoot": "apps/public/web-client/src",
+      "projectType": "application",
+      "prefix": "slab",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/public/web-client",
+            "index": "apps/public/web-client/src/index.html",
+            "main": "apps/public/web-client/src/main.ts",
+            "polyfills": "apps/public/web-client/src/polyfills.ts",
+            "tsConfig": "apps/public/web-client/tsconfig.app.json",
+            "assets": [
+              "apps/public/web-client/src/favicon.ico",
+              "apps/public/web-client/src/assets"
+            ],
+            "styles": [
+              "apps/public/web-client/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/public/web-client/src/environments/environment.ts",
+                  "with": "apps/public/web-client/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "public-web-client:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "public-web-client:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "public-web-client:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/public/web-client/tsconfig.app.json",
+              "apps/public/web-client/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/public/web-client/jest.config.js",
+            "tsConfig": "apps/public/web-client/tsconfig.spec.json",
+            "setupFile": "apps/public/web-client/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "public-web-client-e2e": {
+      "root": "apps/public/web-client-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/builders:cypress",
+          "options": {
+            "cypressConfig": "apps/public/web-client-e2e/cypress.json",
+            "tsConfig": "apps/public/web-client-e2e/tsconfig.e2e.json",
+            "devServerTarget": "public-web-client:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "public-web-client:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/public/web-client-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
   "cli": {
     "warnings": {
       "typescriptMismatch": false,
@@ -10,5 +134,6 @@
     },
     "defaultCollection": "@nrwl/schematics",
     "packageManager": "yarn"
-  }
+  },
+  "defaultProject": "public-web-client"
 }

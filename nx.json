@@ -7,5 +7,14 @@
     "tslint.json": "*",
     "nx.json": "*"
   },
-  "projects": {}
+  "projects": {
+    "public-web-client": {
+      "tags": [
+        "access:public team:administrators"
+      ]
+    },
+    "public-web-client-e2e": {
+      "tags": []
+    }
+  }
 }

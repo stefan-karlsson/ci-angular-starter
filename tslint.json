@@ -3,6 +3,10 @@
     "node_modules/codelyzer",
     "node_modules/@nrwl/schematics/src/tslint"
   ],
+  "extends": [
+    "tslint:latest",
+    "tslint-config-prettier"
+  ],
   "rules": {
     "arrow-return-shorthand": true,
     "callable-types": true,

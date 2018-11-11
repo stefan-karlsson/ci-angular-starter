@@ -1,0 +1,18 @@
+{
+  "extends": "../../../tslint.json",
+  "rules": {
+    "directive-selector": [
+      true,
+      "attribute",
+      "slab",
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      "slab",
+      "kebab-case"
+    ],
+    "no-submodule-imports": [true, "@angular/core/testing", "@angular/router/testing", "zone.js/dist/zone", "core-js/*"]
+  }
+}
