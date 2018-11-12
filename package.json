@@ -26,6 +26,40 @@
     "dep-graph": "./node_modules/.bin/nx dep-graph",
     "help": "./node_modules/.bin/nx help"
   },
+  "release": {
+    "branch": "develop",
+    "repositoryUrl": "https://github.com/stefan-karlsson/ci-angular-starter.git",
+    "verifyConditions": [
+      "@semantic-release/github"
+    ],
+    "analyzeCommits": "@semantic-release/commit-analyzer",
+    "verifyRelease": [],
+    "generateNotes": [
+      "@semantic-release/release-notes-generator"
+    ],
+    "prepare": [{
+        "path": "@semantic-release/changelog",
+        "changelogFile": "CHANGELOG.md"
+      },
+      {
+        "path": "@semantic-release/git",
+        "assets": [
+          "package.json",
+          "CHANGELOG.md"
+        ],
+        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }
+    ],
+    "publish": [
+      "@semantic-release/github"
+    ],
+    "success": [
+      "@semantic-release/github"
+    ],
+    "fail": [
+      "@semantic-release/github"
+    ]
+  },
   "husky": {
     "hooks": {
       "pre-commit": "yarn format:write-staged",
