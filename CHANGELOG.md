@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/stefan-karlsson/ci-angular-starter/compare/v1.0.0...v1.1.0) (2018-11-12)
+
+
+### Features
+
+* change text ([ee376d7](https://github.com/stefan-karlsson/ci-angular-starter/commit/ee376d7))
+
 # 1.0.0 (2018-11-12)
 
 
