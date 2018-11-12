@@ -23,3 +23,6 @@ Unit test will be triggered before pushing to git using the `pre-push` hook prov
 
 ## e2e testing
 E2E testing is done using [cypress](https://github.com/cypress-io/cypress)
+
+## CI/CD
+The project is using CircleCI that triggers semantic-release
