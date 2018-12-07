@@ -63,7 +63,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn format:write-staged",
+      "pre-commit": "yarn format:write-staged && yarn lint",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-push": "yarn test"
     }
