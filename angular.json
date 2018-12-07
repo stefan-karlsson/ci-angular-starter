@@ -27,6 +27,7 @@
               "apps/public/web-client/src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "apps/public/web-client/src/styles.scss"
             ],
             "scripts": []
