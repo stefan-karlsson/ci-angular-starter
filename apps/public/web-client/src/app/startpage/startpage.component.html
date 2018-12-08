@@ -1,0 +1,26 @@
+<div class="grid-container">
+  <h1 class="mat-h1" i18n="Header on dashboard page@@app.startpage.h1[dashboard]">Dashboard</h1>
+  <mat-grid-list cols="2" rowHeight="350px">
+    <mat-grid-tile *ngFor="let card of cards | async; trackBy:card.id" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            {{ card.title }}
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" i18n-aria-label="Aria label that will toggle the menu items@@app.startpage.menu[toggle]"
+              aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item i18n="Text in menu item that will expand a card@@app.startpage.menu-item[expand]">Expand</button>
+              <button mat-menu-item i18n="Text in menu item that will remove a card@@app.startpage.menu-item[remove]">Remove</button>
+            </mat-menu>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div i18n="Text in card that describes the functionality@@app.startpage.card-content[description]">Card
+            Content Here</div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

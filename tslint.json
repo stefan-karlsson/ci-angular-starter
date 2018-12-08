@@ -5,6 +5,7 @@
   ],
   "extends": [
     "tslint:latest",
+    "angular-tslint-rules",
     "tslint-config-prettier"
   ],
   "rules": {
@@ -98,10 +99,13 @@
       true,
       {
         "allow": [],
-        "depConstraints": [
-          { "sourceTag": "*", "onlyDependOnLibsWithTags": ["*"] }
-        ]
+        "depConstraints": [{
+          "sourceTag": "*",
+          "onlyDependOnLibsWithTags": ["*"]
+        }]
       }
-    ]
+    ],
+    "array-type": [true, "generic"],
+    "curly": true
   }
 }
